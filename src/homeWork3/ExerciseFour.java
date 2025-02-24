@@ -5,10 +5,8 @@ public class ExerciseFour {
     // Расставьте операции инкремента декремента так, чтобы после выполнения операции (c=x*y) с равнялось 12, x=равнялось 6, y=1Выведите полученные значения в консоль.
     public static void main(String[] args) {
         int x = 5;
-        int y = 3;
-        x++;
-        y--;
-        int c = x * y;
+        int y = 2;
+        int c = (++x) * (y--);
         System.out.println("Значение x: " + x);
         System.out.println("Значение y: " + y);
         System.out.println("Значение c: " + c);
