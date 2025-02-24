@@ -8,22 +8,10 @@ public class Exercise5_4 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int number = getPositiveNumber(scanner);
-        int current = 1;
-        System.out.println("Чётные числа:");
-        while (current <= number) {
-            if (current % 2 == 0) {
-                System.out.print(current + " ");
-            }
-            current++;
-        }
-        System.out.println("\nНечётные числа:");
-        current = 1; // Сброс значения current
-        while (current <= number) {
-            if (current % 2 != 0) {
-                System.out.print(current + " ");
-            }
-            current++;
-        }
+        System.out.println("Чётные цифры:");
+        printDigits(number, true);
+        System.out.println("\nНечётные цифры:");
+        printDigits(number, false);
         scanner.close();
     }
 
@@ -44,5 +32,14 @@ public class Exercise5_4 {
             }
         } while (number <= 0 || number % 10 == 0);
         return number;
+    }
+    private static void printDigits(int number, boolean isEven) {
+        String numberStr = String.valueOf(number);
+        for (int i = 0; i < numberStr.length(); i++) {
+            int digit = Character.getNumericValue(numberStr.charAt(i));
+            if ((isEven && digit % 2 == 0) || (!isEven && digit % 2 != 0)) {
+                System.out.print(digit + " ");
+            }
+        }
     }
 }
