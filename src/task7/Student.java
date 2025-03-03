@@ -1,6 +1,8 @@
 package task7;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Student {
 
@@ -48,22 +50,26 @@ public class Student {
         this.group = newGroup;
     }
 
-    public static Student[] getStudents(Student[] students, int mark) {
-        return Arrays.stream(students)
-                .filter(student -> student.averageMark > mark)
-                .toArray(Student[]::new);
+    public List<Student> getStudents(List<Student> students, int mark) {
+        List<Student> topStudents = new ArrayList<>();
+        for (Student student : students) {
+            if (student.averageMark > mark) {
+                topStudents.add(student);
+            }
+        }
+        return topStudents;
     }
 
     public static void main(String[] args) {
-        Student[] students = new Student[5];
-        students[0] = new Student(1, "Алексей", "Иванов", "Физический", 3, "A", 85);
-        students[1] = new Student(2, "Мария", "Петрова", "Математический", 2, "B", 78);
-        students[2] = new Student(3, "Иван", "Сидоров", "Химический", 4, "C", 90);
-        students[3] = new Student(4, "Елена", "Смирнова", "Биологический", 1, "D", 70);
-        students[4] = new Student(5, "Дмитрий", "Козлов", "Исторический", 3, "E", 95);
+        List<Student> students = new ArrayList<>();
+        students.add(new Student(1, "Алексей", "Иванов", "Физический", 3, "A", 85));
+        students.add(new Student(2, "Мария", "Петрова", "Математический", 2, "B", 78));
+        students.add(new Student(3, "Иван", "Сидоров", "Химический", 4, "C", 90));
+        students.add(new Student(4, "Елена", "Смирнова", "Биологический", 1, "D", 70));
+        students.add(new Student(5, "Дмитрий", "Козлов", "Исторический", 3, "E", 95));
 
-        Student[] topStudents = Student.getStudents(students, 80);
-
+        Student studentHelper = new Student();
+        List<Student> topStudents = studentHelper.getStudents(students, 80);
         for (Student student : topStudents) {
             student.info();
             System.out.println();
