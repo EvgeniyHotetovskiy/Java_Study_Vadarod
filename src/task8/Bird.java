@@ -32,4 +32,26 @@ class Bird extends Animal {
     public String toString() {
         return super.toString() + ", Family: " + family + ", Max Flight Height: " + maxFlightHeight;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Bird bird = (Bird) obj;
+        return maxAge == bird.maxAge &&
+                maxFlightHeight == bird.maxFlightHeight &&
+                color.equals(bird.color) &&
+                foodType.equals(bird.foodType) &&
+                family.equals(bird.family);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = color.hashCode();
+        result = 21 * result + maxAge;
+        result = 31 * result + foodType.hashCode();
+        result = 31 * result + family.hashCode();
+        result = 21 * result + maxFlightHeight;
+        return result;
+    }
 }
